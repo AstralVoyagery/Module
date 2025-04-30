@@ -2,11 +2,13 @@
 #!desc=NodeSeek签到脚本
 #!category=nodeseek
 #!author=Marvin
-#!arguments=NS_COOKIE:填入你的cookie,NS_RANDOM:true,NS_DATE:0 9 * * *
+#!arguments=NS_RANDOM:true,NS_DATE:0 9 * * *
 #!arguments-desc=NS_RANDOM: true为试试手气 false为固定鸡腿\n\nNS_DATE: 定义执行的日期 默认每天上午9时执行
 
 [MITM]
-hostname = %APPEND% *.nodeseek.com
+hostname = %APPEND% www.nodeseek.com
 
 [Script]
-nodeseek = type=cron,cronexp="{{{NS_DATE}}}",script-path=https://raw.githubusercontent.com/AstralVoyagery/Module/main/script/nodeseek.js,argument="NS_COOKIE&{{{NS_COOKIE}}},NS_RANDOM&{{{NS_RANDOM}}}"
+nodeseek = type=cron,cronexp="{{{NS_DATE}}}",script-path=https://raw.githubusercontent.com/AstralVoyagery/Module/main/script/nodeseek.js,argument="NS_RANDOM&{{{NS_RANDOM}}}"
+
+nodeseek_cookie = type=http-request,pattern=^https:\/\/www\.nodeseek\.com\/setting, script-path=https://raw.githubusercontent.com/AstralVoyagery/Module/main/script/nodeseek.js
